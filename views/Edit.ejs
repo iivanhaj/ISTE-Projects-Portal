@@ -1,0 +1,77 @@
+<%- include('layout/admin-header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-light">
+                    <h3>Edit Project (<%= project.name %>)</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/update/<%= project._id %>" method="post" id="create-project" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="name" class="text-light">Name</label>
+                            <input type="text" name="name" placeholder="Enter Project Name" class="form-control form-control-lg" 
+                            value="<%= project.name %>"
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="tagline" class="text-light">Tagline</label>
+                            <input type="text" name="tagline" placeholder="Enter Tagline" class="form-control form-control-lg" 
+                            value="<%= project.tagline %>" 
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="mainUrl" class="text-light">Main URL</label>
+                            <input type="text" name="mainUrl" placeholder="Enter Main URL" class="form-control form-control-lg" 
+                            value="<%= project.mainUrl %>"
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="nameOfLink" class="text-light">Name of Link</label>
+                            <input type="text" name="nameOfLink" placeholder="Name of Link" class="form-control form-control-lg" 
+                            value="<%= project.nameOfLink %>"
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="images" class="form-label text-light">Upload Image</label>
+                            <input class="form-control form-control-lg" type="file" name="images"/>
+                            <img src="/<%= project.images %>" width="50px" height="50px" class = "img.thumbnail mt-1" />
+                        </div>
+                        <input type="hidden" name = "oldImage" value="<%= project.images %>" />
+                        <div class="mb-3">
+                            <label for="description" class="text-light">Description</label>
+                            <input type="text" name="description" placeholder="Description" class="form-control form-control-lg" 
+                            value="<%= project.description %>"
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="collaborators" class="text-light">Collaborators</label>
+                            <input type="text" name="collaborators" placeholder="Enter Collaborators (separated by commas)" class="form-control form-control-lg" 
+                            value="<%= project.collaborators %>"
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="additionalLink" class="text-light">Additional Link</label>
+                            <input type="text" name="additionalLink" placeholder="Enter Additional Link" class="form-control form-control-lg" 
+                            value="<%= project.additionalLink %>"
+                            required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="additionalLinkName" class="text-light">Name of Additional Link</label>
+                            <input type="text" name="additionalLinkName" placeholder="Enter Name of Additional Link" class="form-control form-control-lg" 
+                            value="<%= project.additionalLinkName %>"
+                            required />
+                        </div>
+                        <div class="mb-3 d-grid">
+                            <input type="submit" name="submit" value="Update" class="btn btn-success btn-lg" required />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>
+                

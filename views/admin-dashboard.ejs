@@ -1,0 +1,57 @@
+<%- include('layout/admin-header') %>
+
+<div class="text-center center-div mt-5" id="login">
+    <div class="container w-100 border py-5 mt-5">
+        <div>
+            <h3>Welcome to Admin Dashboard</h3>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/create" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                        Create New Project
+                    </a>
+                </li>
+            </ul>
+            <% if (message) { %>
+                <div class="alert alert-<%= message.type %> alert-dismissible fade show" role="alert">
+                    <strong><%= message.message %></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>                      
+        </div>
+        <div class="container my-4">
+            <div class="row my-4">
+                <% projects.forEach(function(project, index) { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="<%= project.images %>" class="card-img-top" alt="Project Image">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= project.name %></h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><%= project.tagline %></h6>
+                                <p class="card-text"><%= project.description %></p>
+                                <p class="card-text"><%= project.collaborators %></p>
+                                <a href="<%= project.mainUrl %>" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= project.nameOfLink %>">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                                <a href="<%= project.additionalLink %>" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= project.additionalLinkName %>">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                                <a href="/edit/<%= project._id %>" class="btn btn-success btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="/delete/<%= project._id %>" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+                <% if (projects.length === 0) { %>
+                    <h1 class="text-center text-secondary mt-5">No projects found in the database.</h1>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>
